@@ -36,7 +36,7 @@ func TestRace(t *testing.T) {
 
 	resStr := builder.String()
 
-	if res != counter {
+	if resStr != counterStr {
 		t.Errorf("expected %s, got %s", counterStr, resStr)
 	}
 }
