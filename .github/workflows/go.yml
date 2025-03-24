@@ -35,6 +35,9 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-go@v4
 
+    - name: CGO
+      run: export CGO_ENABLED=1
+
     - name: Test
       run: go test -race -v ./...
   
