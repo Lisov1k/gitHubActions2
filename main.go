@@ -6,7 +6,17 @@ import (
 )
 
 func main() {
+	var wg sync.WaitGroup
+	wg.Add(5)
 
+	for i := 0; i < 5; i++ {
+		go func() {
+			fmt.Println(i)
+			wg.Done()
+		}()
+	}
+
+	wg.Wait()
 }
 
 func MaxInt(a, b int) int {
@@ -15,22 +25,4 @@ func MaxInt(a, b int) int {
 	}
 
 	return b
-}
-
-func Race() [10]int {
-	counter := [10]int{}
-
-	var wg sync.WaitGroup
-	wg.Add(10)
-
-	for i := 0; i < 10; i++ {
-		go func() {
-			fmt.Println(i)
-			counter[i] = i
-			wg.Done()
-		}()
-	}
-
-	wg.Wait()
-	return counter
 }
